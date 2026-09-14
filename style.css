@@ -24,15 +24,13 @@ body {
   background: #f7edf3;
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .page {
   width: 100%;
   max-width: 920px;
   min-width: 0;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -47,13 +45,9 @@ body {
 
 main {
   width: 100%;
-  max-width: 100%;
   min-height: 570px;
   padding: clamp(25px, 5vw, 55px);
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .section {
@@ -123,18 +117,28 @@ p {
   gap: clamp(25px, 5vw, 60px);
 }
 
+.text-content {
+  min-width: 0;
+}
+
 .photo-content {
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* MARCO BLANCO TIPO FOTOGRAFÍA */
+/* MARCO BLANCO TIPO POLAROID */
+
 .photo-frame {
   width: min(100%, 330px);
-  position: relative;
+  height: auto;
+  min-height: 0;
   margin: 25px auto;
-  padding: 12px 12px 52px;
+  padding: 12px 12px 54px;
+  position: relative;
+  display: block;
+  overflow: hidden;
   background: var(--paper);
   border: 1px solid #ead9df;
   box-shadow:
@@ -157,19 +161,22 @@ p {
     0 3px 8px rgba(117, 48, 79, 0.1);
 }
 
-/* ÁREA DE FOTO CON ALTURA CONTROLADA */
+/* IMAGEN CON ALTURA CONTROLADA */
+
 .photo-frame img {
   display: block;
   width: 100%;
   height: 220px;
+  max-width: 100%;
+  max-height: 220px;
   object-fit: cover;
   object-position: center;
   background: #e8e0e4;
 }
 
-/* TEXTO INFERIOR DEL MARCO */
-.photo-frame::after {
-  content: "Un recuerdo especial ♡";
+/* TEXTO DEL MARCO */
+
+.photo-caption {
   position: absolute;
   right: 0;
   bottom: 16px;
@@ -180,12 +187,13 @@ p {
   text-align: center;
 }
 
-/* ESPACIO SI NO EXISTE LA IMAGEN */
+/* ESPACIO DE FOTO SI EL ARCHIVO NO EXISTE */
+
 .photo-placeholder {
   position: absolute;
   top: 12px;
   right: 12px;
-  bottom: 52px;
+  bottom: 54px;
   left: 12px;
   display: none;
   align-items: center;
@@ -402,10 +410,10 @@ footer {
 }
 
 /* TABLETAS Y CELULARES */
+
 @media (max-width: 760px) {
   body {
     padding: 8px;
-    align-items: flex-start;
   }
 
   .page {
@@ -428,13 +436,22 @@ footer {
 
   .photo-frame {
     width: min(100%, 285px);
+    padding: 10px 10px 48px;
   }
 
   .photo-frame img {
     height: 190px;
+    max-height: 190px;
   }
 
-  .photo-frame::after {
+  .photo-placeholder {
+    top: 10px;
+    right: 10px;
+    bottom: 48px;
+    left: 10px;
+  }
+
+  .photo-caption {
     bottom: 14px;
     font-size: 14px;
   }
@@ -468,6 +485,7 @@ footer {
 }
 
 /* CELULARES PEQUEÑOS */
+
 @media (max-width: 380px) {
   main {
     padding: 24px 14px;
@@ -480,11 +498,7 @@ footer {
 
   .photo-frame img {
     height: 165px;
-  }
-
-  .photo-frame::after {
-    bottom: 11px;
-    font-size: 13px;
+    max-height: 165px;
   }
 
   .photo-placeholder {
@@ -492,6 +506,11 @@ footer {
     right: 9px;
     bottom: 40px;
     left: 9px;
+  }
+
+  .photo-caption {
+    bottom: 11px;
+    font-size: 13px;
   }
 
   .btn {
@@ -504,7 +523,8 @@ footer {
   }
 }
 
-/* REDUCIR ANIMACIONES SI EL USUARIO LO PREFIERE */
+/* REDUCIR ANIMACIONES */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
