@@ -20,21 +20,21 @@ html {
 
 body {
   min-height: 100vh;
+  padding: 20px;
   background: #f7edf3;
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 }
 
 .page {
   width: 100%;
   max-width: 920px;
   min-width: 0;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 24px;
   background: linear-gradient(
@@ -50,10 +50,10 @@ main {
   max-width: 100%;
   min-height: 570px;
   padding: clamp(25px, 5vw, 55px);
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
 }
 
 .section {
@@ -65,11 +65,15 @@ main {
   display: block;
 }
 
+.cover {
+  text-align: center;
+}
+
 h1,
 h2 {
+  margin-bottom: 20px;
   color: var(--dark-pink);
   line-height: 1.15;
-  margin-bottom: 20px;
 }
 
 h1 {
@@ -91,9 +95,9 @@ h3 {
 }
 
 p {
+  margin-bottom: 15px;
   font-size: 16px;
   line-height: 1.8;
-  margin-bottom: 15px;
 }
 
 .intro {
@@ -102,18 +106,14 @@ p {
   font-size: 18px;
 }
 
-.cover {
-  text-align: center;
-}
-
 .eyebrow {
+  margin-bottom: 15px;
   color: #c15b83;
   font-family: Arial, sans-serif;
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 15px;
 }
 
 .content-grid {
@@ -132,9 +132,8 @@ p {
 /* MARCO BLANCO TIPO FOTOGRAFÍA */
 .photo-frame {
   width: min(100%, 330px);
-  min-height: 250px;
   position: relative;
-  margin: 20px auto;
+  margin: 25px auto;
   padding: 12px 12px 52px;
   background: var(--paper);
   border: 1px solid #ead9df;
@@ -158,16 +157,30 @@ p {
     0 3px 8px rgba(117, 48, 79, 0.1);
 }
 
+/* ÁREA DE FOTO CON ALTURA CONTROLADA */
 .photo-frame img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
+  height: 220px;
   object-fit: cover;
+  object-position: center;
   background: #e8e0e4;
 }
 
-/* Espacio alternativo cuando todavía no existe la foto */
+/* TEXTO INFERIOR DEL MARCO */
+.photo-frame::after {
+  content: "Un recuerdo especial ♡";
+  position: absolute;
+  right: 0;
+  bottom: 16px;
+  left: 0;
+  color: #b58b9c;
+  font-family: "Brush Script MT", cursive;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* ESPACIO SI NO EXISTE LA IMAGEN */
 .photo-placeholder {
   position: absolute;
   top: 12px;
@@ -203,14 +216,14 @@ p {
 }
 
 .quote {
-  background: var(--light-pink);
-  border-radius: 35% 12% 35% 12%;
+  margin-top: 22px;
   padding: 20px 24px;
+  border-radius: 35% 12% 35% 12%;
+  background: var(--light-pink);
   color: #b13d6b;
   font-size: 17px;
   font-style: italic;
   line-height: 1.6;
-  margin-top: 22px;
 }
 
 .qualities,
@@ -221,17 +234,17 @@ p {
 
 .qualities li,
 .wishes li {
+  margin: 12px 0;
   font-size: 16px;
   line-height: 1.6;
-  margin: 12px 0;
 }
 
 .qualities li::before,
 .wishes li::before {
   content: "♡";
+  margin-right: 10px;
   color: #d14c81;
   font-size: 23px;
-  margin-right: 10px;
 }
 
 .special-line {
@@ -241,11 +254,11 @@ p {
 }
 
 .btn {
+  padding: 13px 24px;
   border: none;
   border-radius: 25px;
   background: var(--pink);
   color: white;
-  padding: 13px 24px;
   font-family: Arial, sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -267,16 +280,16 @@ p {
 }
 
 .btn.secondary {
+  border: 1px solid #e7a4bd;
   background: white;
   color: #b2346c;
-  border: 1px solid #e7a4bd;
 }
 
 .actions {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 12px;
   margin-top: 30px;
 }
 
@@ -304,17 +317,17 @@ p {
 
 .progress-bar {
   height: 12px;
-  background: #f3d5e2;
-  border-radius: 20px;
-  overflow: hidden;
   margin: 20px 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #f3d5e2;
 }
 
 #progress-fill {
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, #d85b91, #b8326d);
   border-radius: 20px;
+  background: linear-gradient(90deg, #d85b91, #b8326d);
   transition: width 0.5s ease;
 }
 
@@ -332,26 +345,26 @@ p {
 }
 
 .result h3 {
-  font-size: 38px;
   margin: 12px 0;
+  font-size: 38px;
 }
 
 .princess-icon {
-  font-size: 65px;
   margin: 12px;
+  font-size: 65px;
 }
 
 .progress-text {
-  text-align: center;
+  margin-top: 25px;
   color: #b96c8d;
   font-family: Arial, sans-serif;
   font-size: 12px;
-  margin-top: 25px;
+  text-align: center;
 }
 
 footer {
-  border-top: 1px solid #f1d0de;
   padding: 15px;
+  border-top: 1px solid #f1d0de;
   color: #a56b84;
   font-family: Arial, sans-serif;
   font-size: 12px;
@@ -384,8 +397,8 @@ footer {
 }
 
 .final-message {
-  font-size: clamp(24px, 4vw, 34px);
   margin-top: 25px;
+  font-size: clamp(24px, 4vw, 34px);
 }
 
 /* TABLETAS Y CELULARES */
@@ -415,6 +428,15 @@ footer {
 
   .photo-frame {
     width: min(100%, 285px);
+  }
+
+  .photo-frame img {
+    height: 190px;
+  }
+
+  .photo-frame::after {
+    bottom: 14px;
+    font-size: 14px;
   }
 
   .actions {
@@ -456,6 +478,15 @@ footer {
     padding: 9px 9px 40px;
   }
 
+  .photo-frame img {
+    height: 165px;
+  }
+
+  .photo-frame::after {
+    bottom: 11px;
+    font-size: 13px;
+  }
+
   .photo-placeholder {
     top: 9px;
     right: 9px;
@@ -473,7 +504,7 @@ footer {
   }
 }
 
-/* ACCESIBILIDAD: REDUCIR ANIMACIONES */
+/* REDUCIR ANIMACIONES SI EL USUARIO LO PREFIERE */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
