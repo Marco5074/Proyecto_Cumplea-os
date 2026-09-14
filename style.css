@@ -1,29 +1,812 @@
-:root{--pink:#c63c76;--dark-pink:#a72e62;--text:#71334f;--muted:#a55278;--border:#efc1d4;--light-pink:#f8d3e3}
-*{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;background:#f7edf3;color:var(--text);font-family:Georgia,"Times New Roman",serif;display:flex;justify-content:center;align-items:center;padding:20px}
-.page{width:100%;max-width:920px;min-width:0;overflow:hidden;position:relative;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,#fffafd,#fce8f2 60%,#f3eafa)}
-main{min-height:570px;width:100%;max-width:100%;padding:clamp(25px,5vw,55px);display:flex;flex-direction:column;justify-content:center;position:relative}
-.section{display:none;animation:fadeIn .4s ease}.section.active{display:block}
-h1,h2{color:var(--dark-pink);line-height:1.15;margin-bottom:20px}h1{font-size:clamp(38px,6vw,65px)}h2{font-size:clamp(32px,5vw,48px)}
-h1 span,h2 span{color:var(--pink);font-style:italic}h3{color:var(--dark-pink)}
-p{font-size:16px;line-height:1.8;margin-bottom:15px}.intro{font-size:18px;max-width:600px;margin:0 auto 20px}.cover{text-align:center}
-.eyebrow{color:#c15b83;font:bold 11px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;margin-bottom:15px}
-.content-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.85fr);align-items:center;gap:clamp(25px,5vw,60px)}
-.photo-content{display:flex;justify-content:center;align-items:center}
-.heart-frame{width:min(100%,280px);aspect-ratio:1;position:relative;margin:20px auto;overflow:hidden;background:#e5e0e3;clip-path:polygon(50% 100%,38% 89%,25% 77%,14% 64%,6% 50%,1% 36%,2% 23%,8% 13%,18% 7%,30% 7%,40% 12%,50% 25%,60% 12%,70% 7%,82% 7%,92% 13%,98% 23%,99% 36%,94% 50%,86% 64%,75% 77%,62% 89%) }
-.heart-frame img{width:100%;height:100%;object-fit:cover;display:block}
-.photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#b6a4ad;font-size:42px;gap:10px;pointer-events:none}
-.photo-placeholder small{font:12px Arial,sans-serif;color:#8e7b84}
-.quote{background:var(--light-pink);border-radius:35% 12% 35% 12%;padding:20px 24px;color:#b13d6b;font-style:italic;font-size:17px;line-height:1.6;margin-top:22px}
-.qualities,.wishes{list-style:none;margin:20px 0}.qualities li,.wishes li{font-size:16px;line-height:1.6;margin:12px 0}.qualities li::before,.wishes li::before{content:"♡";color:#d14c81;font-size:23px;margin-right:10px}
-.special-line{font-size:24px;color:var(--pink);font-style:italic}
-.btn{border:none;border-radius:25px;background:var(--pink);color:white;padding:13px 24px;font:600 13px Arial,sans-serif;cursor:pointer;transition:transform .2s,background .2s}.btn:hover{background:#ad2e65;transform:translateY(-2px)}
-.btn.secondary{background:white;color:#b2346c;border:1px solid #e7a4bd}.actions{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:30px}.actions.center{justify-content:center}
-.search-box{max-width:440px;margin:25px auto;text-align:center}.badge{display:inline-block;padding:8px 18px;border:1px solid #e6a2bd;border-radius:25px;background:#fff7fb;color:#b52d66;font:600 12px Arial,sans-serif}
-.progress-bar{height:12px;background:#f3d5e2;border-radius:20px;overflow:hidden;margin:20px 0}#progress-fill{height:100%;width:0;background:linear-gradient(90deg,#d85b91,#b8326d);border-radius:20px;transition:width .5s ease}
-#search-status{color:var(--muted);font:14px Arial,sans-serif;min-height:22px}.result{display:none;margin-top:25px;animation:fadeIn .5s ease}.result h3{font-size:38px;margin:12px 0}.princess-icon{font-size:65px;margin:12px}
-.progress-text{text-align:center;color:#b96c8d;font:12px Arial,sans-serif;margin-top:25px}footer{text-align:center;border-top:1px solid #f1d0de;padding:15px;font:12px Arial,sans-serif;color:#a56b84}
-.floating-heart{position:absolute;color:#ed8caf;font-size:28px;pointer-events:none;animation:floating 7s ease-in-out infinite}.heart-1{top:10%;left:4%}.heart-2{top:20%;right:5%;animation-delay:2s}.heart-3{bottom:10%;left:8%;animation-delay:4s}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes floating{50%{transform:translateY(-12px) rotate(10deg)}}
-@media(max-width:760px){body{padding:8px;align-items:flex-start}.page{border-radius:16px}.content-grid{grid-template-columns:1fr;gap:15px}.photo-content{order:-1}.heart-frame{width:min(100%,225px)}main{padding:28px 18px;min-height:0}.actions{justify-content:center}.btn{padding:12px 18px;max-width:100%}.intro{font-size:16px}.quote{padding:18px;font-size:16px}p{font-size:15px;overflow-wrap:anywhere}}
-@media(prefers-reduced-motion:reduce){.section,.result,.floating-heart{animation:none}}
+:root {
+  --pink: #c63c76;
+  --dark-pink: #a72e62;
+  --text: #71334f;
+  --muted: #a55278;
+  --border: #efc1d4;
+  --light-pink: #f8d3e3;
+  --paper: #fffdfd;
+}
+
+
+/* ==================== BASE ==================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f9edf4,
+      #f8e5ef 50%,
+      #f2eafa
+    );
+
+  color: var(--text);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+
+/* ==================== CONTENEDOR ==================== */
+
+.page {
+  width: 100%;
+  max-width: 920px;
+  min-width: 0;
+
+  overflow: hidden;
+
+  position: relative;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffafd,
+      #fce8f2 60%,
+      #f3eafa
+    );
+
+  box-shadow:
+    0 20px 60px rgba(139, 61, 96, 0.10);
+}
+
+
+/* ==================== MAIN ==================== */
+
+main {
+  min-height: 570px;
+
+  width: 100%;
+  max-width: 100%;
+
+  padding: clamp(25px, 5vw, 55px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  position: relative;
+}
+
+
+/* ==================== SECCIONES ==================== */
+
+.section {
+  display: none;
+
+  animation:
+    fadeIn
+    0.4s
+    ease;
+}
+
+.section.active {
+  display: block;
+}
+
+
+/* ==================== TITULOS ==================== */
+
+h1,
+h2 {
+  color: var(--dark-pink);
+
+  line-height: 1.15;
+
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size:
+    clamp(
+      38px,
+      6vw,
+      65px
+    );
+}
+
+h2 {
+  font-size:
+    clamp(
+      32px,
+      5vw,
+      48px
+    );
+}
+
+h1 span,
+h2 span {
+  color: var(--pink);
+
+  font-style: italic;
+}
+
+h3 {
+  color: var(--dark-pink);
+}
+
+
+/* ==================== TEXTO ==================== */
+
+p {
+  font-size: 16px;
+
+  line-height: 1.8;
+
+  margin-bottom: 15px;
+}
+
+.intro {
+  font-size: 18px;
+
+  max-width: 600px;
+
+  margin:
+    0 auto
+    20px;
+}
+
+.cover {
+  text-align: center;
+}
+
+
+/* ==================== ETIQUETAS ==================== */
+
+.eyebrow {
+  color: #c15b83;
+
+  font:
+    bold
+    11px
+    Arial,
+    sans-serif;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 15px;
+}
+
+
+/* ==================== GRID ==================== */
+
+.content-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(220px, 0.85fr);
+
+  align-items: center;
+
+  gap:
+    clamp(
+      25px,
+      5vw,
+      60px
+    );
+}
+
+
+/* ==================== FOTOS ==================== */
+
+.photo-content {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+
+/*
+   MARCO DE FOTO
+   ================================
+   Este reemplaza al antiguo corazón.
+*/
+
+.photo-frame {
+  width: min(100%, 310px);
+
+  aspect-ratio: 4 / 5;
+
+  position: relative;
+
+  margin:
+    20px auto;
+
+  padding:
+    12px
+    12px
+    48px
+    12px;
+
+  background: var(--paper);
+
+  border:
+    1px solid
+    #ead8df;
+
+  box-shadow:
+    0 12px 25px
+    rgba(115, 51, 79, 0.16);
+
+  transform:
+    rotate(-1.5deg);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  overflow: hidden;
+}
+
+
+/* pequeño efecto de fotografía */
+
+.photo-frame::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+
+/* efecto al pasar el mouse */
+
+.photo-frame:hover {
+  transform:
+    rotate(0deg)
+    translateY(-4px);
+
+  box-shadow:
+    0 18px 32px
+    rgba(115, 51, 79, 0.20);
+}
+
+
+/* imagen */
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+
+/* texto que aparece si todavía no hay foto */
+
+.photo-placeholder {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 48px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #b6a4ad;
+
+  font-size: 42px;
+
+  gap: 10px;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+.photo-placeholder small {
+  font:
+    12px
+    Arial,
+    sans-serif;
+
+  color: #8e7b84;
+}
+
+
+/* ==================== FRASES ==================== */
+
+.quote {
+  background:
+    var(--light-pink);
+
+  border-radius:
+    25px
+    10px
+    25px
+    10px;
+
+  padding:
+    20px
+    24px;
+
+  color:
+    #b13d6b;
+
+  font-style: italic;
+
+  font-size: 17px;
+
+  line-height: 1.6;
+
+  margin-top: 22px;
+}
+
+
+/* ==================== LISTAS ==================== */
+
+.qualities,
+.wishes {
+  list-style: none;
+
+  margin:
+    20px 0;
+}
+
+.qualities li,
+.wishes li {
+  font-size: 16px;
+
+  line-height: 1.6;
+
+  margin:
+    12px 0;
+}
+
+.qualities li::before,
+.wishes li::before {
+  content: "♡";
+
+  color: #d14c81;
+
+  font-size: 23px;
+
+  margin-right: 10px;
+}
+
+
+/* ==================== FRASE ESPECIAL ==================== */
+
+.special-line {
+  font-size: 24px;
+
+  color: var(--pink);
+
+  font-style: italic;
+}
+
+
+/* ==================== BOTONES ==================== */
+
+.btn {
+  border: none;
+
+  border-radius: 25px;
+
+  background:
+    var(--pink);
+
+  color: white;
+
+  padding:
+    13px
+    24px;
+
+  font:
+    600
+    13px
+    Arial,
+    sans-serif;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.btn:hover {
+  background:
+    #ad2e65;
+
+  transform:
+    translateY(-2px);
+}
+
+.btn.secondary {
+  background: white;
+
+  color: #b2346c;
+
+  border:
+    1px solid
+    #e7a4bd;
+}
+
+
+/* ==================== BOTONES DE NAVEGACION ==================== */
+
+.actions {
+  display: flex;
+
+  justify-content:
+    space-between;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+  margin-top: 30px;
+}
+
+.actions.center {
+  justify-content: center;
+}
+
+
+/* ==================== BUSCADOR DE MULAN ==================== */
+
+.search-box {
+  max-width: 440px;
+
+  margin:
+    25px auto;
+
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+
+  padding:
+    8px
+    18px;
+
+  border:
+    1px solid
+    #e6a2bd;
+
+  border-radius: 25px;
+
+  background:
+    #fff7fb;
+
+  color:
+    #b52d66;
+
+  font:
+    600
+    12px
+    Arial,
+    sans-serif;
+}
+
+
+/* barra */
+
+.progress-bar {
+  height: 12px;
+
+  background:
+    #f3d5e2;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin:
+    20px 0;
+}
+
+#progress-fill {
+  height: 100%;
+
+  width: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #d85b91,
+      #b8326d
+    );
+
+  border-radius: 20px;
+
+  transition:
+    width
+    0.5s
+    ease;
+}
+
+#search-status {
+  color:
+    var(--muted);
+
+  font:
+    14px
+    Arial,
+    sans-serif;
+
+  min-height: 22px;
+}
+
+
+/* resultado */
+
+.result {
+  display: none;
+
+  margin-top: 25px;
+
+  animation:
+    fadeIn
+    0.5s
+    ease;
+}
+
+.result h3 {
+  font-size: 38px;
+
+  margin:
+    12px 0;
+}
+
+.princess-icon {
+  font-size: 65px;
+
+  margin: 12px;
+}
+
+
+/* ==================== PROGRESO ==================== */
+
+.progress-text {
+  text-align: center;
+
+  color:
+    #b96c8d;
+
+  font:
+    12px
+    Arial,
+    sans-serif;
+
+  margin-top: 25px;
+}
+
+
+/* ==================== FOOTER ==================== */
+
+footer {
+  text-align: center;
+
+  border-top:
+    1px solid
+    #f1d0de;
+
+  padding: 15px;
+
+  font:
+    12px
+    Arial,
+    sans-serif;
+
+  color:
+    #a56b84;
+}
+
+
+/* ==================== CORAZONES DECORATIVOS ==================== */
+
+.floating-heart {
+  position: absolute;
+
+  color:
+    #ed8caf;
+
+  font-size: 28px;
+
+  pointer-events: none;
+
+  animation:
+    floating
+    7s
+    ease-in-out
+    infinite;
+}
+
+.heart-1 {
+  top: 10%;
+  left: 4%;
+}
+
+.heart-2 {
+  top: 20%;
+  right: 5%;
+
+  animation-delay:
+    2s;
+}
+
+.heart-3 {
+  bottom: 10%;
+  left: 8%;
+
+  animation-delay:
+    4s;
+}
+
+
+/* ==================== ANIMACIONES ==================== */
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+@keyframes floating {
+
+  50% {
+    transform:
+      translateY(-12px)
+      rotate(10deg);
+  }
+
+}
+
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 760px) {
+
+  body {
+    padding: 8px;
+
+    align-items:
+      flex-start;
+  }
+
+  .page {
+    border-radius: 16px;
+  }
+
+  main {
+    padding:
+      28px
+      18px;
+
+    min-height: 0;
+  }
+
+  .content-grid {
+
+    grid-template-columns:
+      1fr;
+
+    gap: 15px;
+  }
+
+  .photo-content {
+    order: -1;
+  }
+
+  .photo-frame {
+    width:
+      min(
+        100%,
+        250px
+      );
+
+    margin:
+      10px auto
+      20px;
+  }
+
+  .actions {
+    justify-content:
+      center;
+  }
+
+  .btn {
+    padding:
+      12px
+      18px;
+
+    max-width: 100%;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+
+  .quote {
+    padding: 18px;
+
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 15px;
+
+    overflow-wrap:
+      anywhere;
+  }
+
+}
+
+
+/* ==================== MOVIMIENTO REDUCIDO ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .section,
+  .result,
+  .floating-heart,
+  .photo-frame {
+    animation: none;
+
+    transition: none;
+  }
+
+}
